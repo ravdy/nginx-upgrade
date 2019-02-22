@@ -1,0 +1,25 @@
+---
+# handlers file for upgrade-nginx
+- name: "Start NGINX"
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: "reload NGINX"
+  service:
+    name: nginx
+    state: reloaded
+
+- name: "start keepalived"
+  service:
+    name: keepalived
+    state: started
+    enabled: yes
+
+- name: "reload keepalived"
+  service:
+    name: keepalived
+    state: started
+    enabled: yes
+

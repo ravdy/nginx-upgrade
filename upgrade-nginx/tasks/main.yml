@@ -1,0 +1,5 @@
+---
+# tasks file for upgrade-nginx & keepalived
+- import_tasks: install/update-packages.yml
+- import_tasks: install/nginx.yml
+- import_tasks: install/keepalived.yml

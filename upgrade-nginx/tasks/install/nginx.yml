@@ -1,0 +1,8 @@
+- name: "upgrading NGINX Plus"
+  become: true
+  package:
+   name: nginx-plus
+   only_upgrade: yes
+   state: latest
+  notify: "reload NGINX"
+

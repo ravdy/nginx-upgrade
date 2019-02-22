@@ -1,0 +1,65 @@
+server {
+    listen 80 default_server;
+    server_name valaxy valaxy.net;
+    status_zone valaxy.net;
+
+    root /etc/nginx/html;
+
+
+
+    gzip on;
+    gzip_proxied any;
+    gzip_types text/plain application/xml text/css text/js text/xml application/x-javascript application/javascript text/javascript application/json application/xml+rss;
+    gzip_vary on;    
+    #gzip_min_length 100;
+
+    proxy_intercept_errors off;
+    error_page 404 /error/404.html;
+    location = /error/404.html {
+        root /etc/nginx/html;
+        internal;
+    }
+
+    error_page 403 /error/outage.html;
+    location = /error/outage.html {
+        root /etc/nginx/html;
+        internal;
+    }
+
+    error_page 500 /error/500.html;
+    location = /error/500.html {
+        root /etc/nginx/html;
+        internal;
+    }
+
+    error_page 502 /error/502.html;
+    location = /error/502.html {
+        root /etc/nginx/html;
+        internal;
+    }
+
+    error_page 504 /error/504.html;
+    location = /error/504.html {
+        root /etc/nginx/html;
+        internal;
+    }
+
+    location ^~ /error/ {
+	#internal;
+	root /etc/nginx/html;
+    }
+
+    # nginx+ status page, following example from https://www.nginx.com/resources/admin-guide/Monitoring/
+    location /api {
+        api;
+        allow 10.20.30.40
+		allow 10.20.30.41
+    }
+    location = /dashboard.html {
+        root /etc/nginx/html;
+    }
+
+    include ./etc/nginx/location/*.conf;
+
+}
+

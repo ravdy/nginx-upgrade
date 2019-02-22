@@ -1,0 +1,8 @@
+- name: "upgrading keepalived"
+  become: true
+  package:
+     name: nginx-ha-keepalived
+     only_upgrade: yes
+     state: latest
+  notify: "reload keepalived"
+
